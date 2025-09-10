@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, MapPin, Phone, User, MessageCircle } from "lucide-react";
+import { CheckCircle, MessageCircle } from "lucide-react";
 
 interface OrderDetails {
   dish: {
@@ -11,9 +11,6 @@ interface OrderDetails {
     image: string;
   };
   quantity: number;
-  customerName: string;
-  customerPhone: string;
-  customerAddress: string;
   total: number;
 }
 
@@ -73,36 +70,6 @@ const OrderConfirmation = ({ orderDetails, isOpen, onClose, onProceedToWhatsApp 
             </div>
           </div>
 
-          {/* Customer Details */}
-          <div className="space-y-3">
-            <h4 className="font-baloo font-semibold text-foreground">Delivery Information</h4>
-            
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
-                <User className="w-5 h-5 text-muted-foreground" />
-                <div className="flex-1">
-                  <p className="font-nunito text-sm text-muted-foreground">Customer Name</p>
-                  <p className="font-nunito font-medium">{orderDetails.customerName}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
-                <Phone className="w-5 h-5 text-muted-foreground" />
-                <div className="flex-1">
-                  <p className="font-nunito text-sm text-muted-foreground">Phone Number</p>
-                  <p className="font-nunito font-medium">{orderDetails.customerPhone}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
-                <MapPin className="w-5 h-5 text-muted-foreground mt-1" />
-                <div className="flex-1">
-                  <p className="font-nunito text-sm text-muted-foreground">Delivery Address</p>
-                  <p className="font-nunito font-medium">{orderDetails.customerAddress}</p>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* Order Summary */}
           <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">

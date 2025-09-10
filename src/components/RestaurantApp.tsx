@@ -25,9 +25,6 @@ interface Config {
 interface OrderDetails {
   dish: Dish;
   quantity: number;
-  customerName: string;
-  customerPhone: string;
-  customerAddress: string;
   total: number;
 }
 
@@ -65,12 +62,7 @@ const RestaurantApp = () => {
     
     let message = config.checkoutMessageTemplate
       .replace('{{dishName}}', orderDetails.dish.name)
-      .replace('{{quantity}}', orderDetails.quantity.toString())
-      .replace('{{price}}', orderDetails.dish.price.toString())
-      .replace('{{total}}', orderDetails.total.toString())
-      .replace('{{customerName}}', orderDetails.customerName)
-      .replace('{{customerPhone}}', orderDetails.customerPhone)
-      .replace('{{customerAddress}}', orderDetails.customerAddress);
+      .replace('{{quantity}}', orderDetails.quantity.toString());
     
     const encodedMessage = encodeURIComponent(message);
     

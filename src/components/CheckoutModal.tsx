@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 
 interface Dish {
@@ -24,17 +21,11 @@ interface CheckoutModalProps {
 interface OrderDetails {
   dish: Dish;
   quantity: number;
-  customerName: string;
-  customerPhone: string;
-  customerAddress: string;
   total: number;
 }
 
 const CheckoutModal = ({ dish, isOpen, onClose, onConfirm }: CheckoutModalProps) => {
   const [quantity, setQuantity] = useState(1);
-  const [customerName, setCustomerName] = useState("");
-  const [customerPhone, setCustomerPhone] = useState("");
-  const [customerAddress, setCustomerAddress] = useState("");
 
   const total = quantity * dish.price;
 
@@ -46,17 +37,9 @@ const CheckoutModal = ({ dish, isOpen, onClose, onConfirm }: CheckoutModalProps)
   };
 
   const handleConfirm = () => {
-    if (!customerName.trim() || !customerPhone.trim() || !customerAddress.trim()) {
-      alert("Please fill in all delivery details");
-      return;
-    }
-
     const orderDetails: OrderDetails = {
       dish,
       quantity,
-      customerName: customerName.trim(),
-      customerPhone: customerPhone.trim(),
-      customerAddress: customerAddress.trim(),
       total
     };
 
@@ -65,9 +48,6 @@ const CheckoutModal = ({ dish, isOpen, onClose, onConfirm }: CheckoutModalProps)
     
     // Reset form
     setQuantity(1);
-    setCustomerName("");
-    setCustomerPhone("");
-    setCustomerAddress("");
   };
 
   return (
@@ -128,43 +108,6 @@ const CheckoutModal = ({ dish, isOpen, onClose, onConfirm }: CheckoutModalProps)
             </div>
           </div>
 
-          {/* Customer Details */}
-          <div className="space-y-4">
-            <h4 className="font-baloo font-semibold text-foreground">Delivery Details</h4>
-            
-            <div className="space-y-2">
-              <Label htmlFor="name" className="font-nunito">Full Name *</Label>
-              <Input
-                id="name"
-                placeholder="Enter your full name"
-                value={customerName}
-                onChange={(e) => setCustomerName(e.target.value)}
-                className="font-nunito"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="phone" className="font-nunito">Phone Number *</Label>
-              <Input
-                id="phone"
-                placeholder="Enter your phone number"
-                value={customerPhone}
-                onChange={(e) => setCustomerPhone(e.target.value)}
-                className="font-nunito"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="address" className="font-nunito">Delivery Address *</Label>
-              <Textarea
-                id="address"
-                placeholder="Enter your complete delivery address"
-                value={customerAddress}
-                onChange={(e) => setCustomerAddress(e.target.value)}
-                className="font-nunito min-h-[80px]"
-              />
-            </div>
-          </div>
 
           {/* Order Summary */}
           <div className="bg-gradient-warm/10 rounded-lg p-4 border border-secondary/20">
