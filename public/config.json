@@ -1,0 +1,33 @@
+{
+  "appName": "Quantum Climb",
+  "maxOrdersPerWeek": 20,
+  "whatsappNumber": "+919884050857",
+  "checkoutMessageTemplate": "Hi I would like {{quantity}} plate(s) of {{dishName}}.",
+  "currentWeek": 1,
+  "weeklyDishes": [
+    {
+      "week": 1,
+      "name": "Juicy Crab Curry",
+      "description": "Succulent crab pieces simmered in a rich, aromatic gravy with traditional spices. A seafood lover's dream served with fluffy rice.",
+      "price": 499,
+      "currency": "₹",
+      "image": "./images/crab.png"
+    },
+    {
+      "week": 2,
+      "name": "Continental Chicken Breast in Cajun Sauce",
+      "description": "Tender chicken breast marinated and grilled to perfection, topped with zesty Cajun sauce and served with roasted vegetables.",
+      "price": 449,
+      "currency": "₹",
+      "image": "/images/chicken.png"
+    },
+    {
+      "week": 3,
+      "name": "Golden Jumbo Prawns",
+      "description": "Fresh jumbo prawns coated in golden batter and fried to crispy perfection. Served with tangy dipping sauce and fresh herbs.",
+      "price": 599,
+      "currency": "₹",
+      "image": "/images/prawns.png"
+    }
+  ]
+}
