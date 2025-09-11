@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import DishCard from "./DishCard";
+import WelcomeScreen from "./WelcomeScreen";
 import SplashScreen from "./SplashScreen";
 import CheckoutModal from "./CheckoutModal";
 import OrderConfirmation from "./OrderConfirmation";
@@ -31,7 +32,8 @@ interface OrderDetails {
 const RestaurantApp = () => {
   const [config, setConfig] = useState<Config | null>(null);
   const [loading, setLoading] = useState(true);
-  const [showSplash, setShowSplash] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [currentOrder, setCurrentOrder] = useState<OrderDetails | null>(null);
@@ -60,7 +62,7 @@ const RestaurantApp = () => {
   const generateWhatsAppLink = (orderDetails: OrderDetails): string => {
     if (!config) return '';
     
-    let message = config.checkoutMessageTemplate
+    const message = config.checkoutMessageTemplate
       .replace('{{dishName}}', orderDetails.dish.name)
       .replace('{{quantity}}', orderDetails.quantity.toString());
     
@@ -93,6 +95,11 @@ const RestaurantApp = () => {
       setShowConfirmation(false);
       setCurrentOrder(null);
     }
+  };
+
+  const handleWelcomeEnter = () => {
+    setShowWelcome(false);
+    setShowSplash(true);
   };
 
   const handleSplashComplete = () => {
@@ -132,7 +139,12 @@ const RestaurantApp = () => {
     );
   }
 
-  // Show splash screen first
+  // Show welcome screen first
+  if (showWelcome) {
+    return <WelcomeScreen onEnter={handleWelcomeEnter} />;
+  }
+
+  // Show splash screen after welcome
   if (showSplash) {
     return <SplashScreen onComplete={handleSplashComplete} />;
   }
@@ -141,18 +153,19 @@ const RestaurantApp = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="text-center py-8 px-4">
-        <h1 className="font-baloo text-5xl font-bold text-primary mb-2">
-          {config.appName}
-        </h1>
-        <p className="font-nunito text-muted-foreground text-lg">
-          Fresh. Weekly. Delicious.
-        </p>
+        <div className="mb-1">
+          <img 
+            src="/text_red.png" 
+            alt="POTAATO" 
+            className="h-24 mx-auto object-contain"
+          />
+        </div>
       </header>
 
       {/* Main Content */}
-      <main className="container max-w-2xl mx-auto px-4 pb-8">
-        <div className="text-center mb-8">
-          <h2 className="font-baloo text-2xl font-semibold text-foreground mb-2">
+      <main className="container max-w-2xl mx-auto -mt-8 px-8 pb-4">
+        <div className="text-center mb-4">
+          <h2 className="font-baloo text-2xl font-semibold text-foreground mb-1">
             This Week's Special
           </h2>
           <p className="font-nunito text-muted-foreground">
@@ -173,7 +186,7 @@ const RestaurantApp = () => {
             <img 
               src="/qc.png" 
               alt="Quantum Climb" 
-              className="h-6 w-auto"
+              className="h-12 w-auto"
             />
           </div>
         </footer>

@@ -26,9 +26,13 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
             className="w-full h-full object-contain animate-pulse"
           />
         </div>
-        <h1 className="font-baloo text-4xl font-bold text-potato-cream mb-2">
-          POTAATO
-        </h1>
+        <div className="mb-1">
+          <img 
+            src="/text_cream.png" 
+            alt="POTAATO" 
+            className="h-36 mx-auto object-contain"
+          />
+        </div>
         <p className="font-nunito text-potato-cream/80 text-lg">
           Loading delicious dishes...
         </p>
