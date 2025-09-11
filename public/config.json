@@ -2,7 +2,7 @@
   "appName": "Quantum Climb",
   "maxOrdersPerWeek": 20,
   "whatsappNumber": "+919884050857",
-  "checkoutMessageTemplate": "Hi I would like {{quantity}} plate(s) of {{dishName}}.",
+  "checkoutMessageTemplate": "Hi! I would like to place an order:\n\n{{quantity}} plate(s) of {{dishName}}\n\nPlease confirm availability and payment details. Thank you!",
   "currentWeek": 1,
   "weeklyDishes": [
     {

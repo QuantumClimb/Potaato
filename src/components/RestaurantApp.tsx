@@ -66,16 +66,11 @@ const RestaurantApp = () => {
       .replace('{{dishName}}', orderDetails.dish.name)
       .replace('{{quantity}}', orderDetails.quantity.toString());
     
-    const encodedMessage = encodeURIComponent(message);
+    // Clean phone number (remove + sign only)
+    const cleanPhoneNumber = config.whatsappNumber.replace(/\+/g, '');
     
-    // Clean phone number (remove + and any spaces)
-    const cleanPhoneNumber = config.whatsappNumber.replace(/[+\s]/g, '');
-    
-    // Support both mobile and web WhatsApp
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const baseUrl = isMobile ? 'https://wa.me/' : 'https://web.whatsapp.com/send?phone=';
-    
-    return `${baseUrl}${cleanPhoneNumber}&text=${encodedMessage}`;
+    // Use the simple wa.me format that works reliably
+    return `https://wa.me/${cleanPhoneNumber}?text=${encodeURIComponent(message)}`;
   };
 
   const handleBookNow = () => {
@@ -91,9 +86,21 @@ const RestaurantApp = () => {
   const handleProceedToWhatsApp = () => {
     if (currentOrder) {
       const whatsappLink = generateWhatsAppLink(currentOrder);
-      window.open(whatsappLink, '_blank');
-      setShowConfirmation(false);
-      setCurrentOrder(null);
+      console.log('Generated WhatsApp link:', whatsappLink);
+      console.log('Order details:', currentOrder);
+      
+      // Try to open WhatsApp
+      try {
+        window.open(whatsappLink, '_blank');
+        setShowConfirmation(false);
+        setCurrentOrder(null);
+      } catch (error) {
+        console.error('Error opening WhatsApp:', error);
+        // Fallback: try to copy link to clipboard
+        navigator.clipboard.writeText(whatsappLink).then(() => {
+          alert('WhatsApp link copied to clipboard. Please paste it in your browser.');
+        });
+      }
     }
   };
 
