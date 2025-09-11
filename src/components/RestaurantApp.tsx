@@ -168,9 +168,14 @@ const RestaurantApp = () => {
 
         {/* Footer */}
         <footer className="text-center mt-12 py-6 border-t border-border">
-          <p className="font-nunito text-sm text-muted-foreground">
-            Made with 🥔 by {config.appName}
-          </p>
+          <div className="flex items-center justify-center gap-2">
+            <span className="font-nunito text-sm text-muted-foreground">Powered By</span>
+            <img 
+              src="/qc.png" 
+              alt="Quantum Climb" 
+              className="h-6 w-auto"
+            />
+          </div>
         </footer>
       </main>
 
