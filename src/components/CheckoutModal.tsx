@@ -80,7 +80,7 @@ const CheckoutModal = ({ dish, isOpen, onClose, onConfirm }: CheckoutModalProps)
 
           {/* Quantity Selector */}
           <div className="space-y-2">
-            <Label className="font-nunito font-medium">Quantity</Label>
+            <p className="font-nunito font-medium text-foreground">Quantity</p>
             <div className="flex items-center justify-center gap-4">
               <Button
                 variant="outline"

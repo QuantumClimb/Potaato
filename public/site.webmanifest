@@ -1,0 +1,17 @@
+{
+  "name": "POTAATO Restaurant",
+  "short_name": "POTAATO",
+  "description": "Fresh weekly dishes from POTAATO by Quantum Climb",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF5E1",
+  "theme_color": "#B0301C",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
+
